@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/KAESapps/reaks#readme",
   "dependencies": {
-    "lodash": "4.17.4"
+    "lodash": "4.17.4",
+    "reactivedb": "github:kaesapps/reactivedb"
   }
 }

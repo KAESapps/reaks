@@ -2,7 +2,7 @@ const forEach = require("lodash/forEach")
 const isFunction = require("lodash/isFunction")
 const isNumber = require("lodash/isNumber")
 
-const { autorun } = require("ks-data/obs")
+const { autorun } = require("reactivedb/obs")
 
 const defaultNumericUnits = {
   borderRadius: "px",

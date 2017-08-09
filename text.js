@@ -1,4 +1,4 @@
-const { autorun } = require('ks-data/obs')
+const { autorun } = require('reactivedb/obs')
 const staticText = str => domNode => {
   const textNode = document.createTextNode(str)
   domNode.appendChild(textNode)
