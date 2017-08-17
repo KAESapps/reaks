@@ -1,11 +1,11 @@
-const { autorun } = require('reactivedb/obs')
+const { autorun } = require("reactivedb/obs")
 
 module.exports = (getValue, createCmp) => parentNode => {
   const domNodes = new Map()
   const cmps = new Map()
   const prevIds = []
   const cancelObservation = autorun(() => {
-    const ids = getValue()
+    const ids = getValue() || []
     // TODO: est-il possible de faire ça meiux pour limiter les opérations sur le DOM ? reprendre l'implémentation de react/preact/inferno ?
     prevIds.slice().forEach((id, i) => {
       const newIndex = ids.indexOf(id)
@@ -35,7 +35,7 @@ module.exports = (getValue, createCmp) => parentNode => {
         prevIds.splice(i, 0, id)
       } else {
         // add
-        const domNode = document.createElement('div')
+        const domNode = document.createElement("div")
         const refId = prevIds[i]
         const refNode = domNodes.get(refId)
         parentNode.insertBefore(domNode, refNode)
@@ -45,7 +45,7 @@ module.exports = (getValue, createCmp) => parentNode => {
         prevIds.splice(i, 0, id)
       }
     })
-  }, 'repeat')
+  }, "repeat")
   return () => {
     cancelObservation()
     cmps.forEach(unmount => unmount())
