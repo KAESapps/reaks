@@ -6,5 +6,7 @@ module.exports = dimensions => {
   if (dimensions.h) styleObj.height = dimensions.h
   if (dimensions.wMin) styleObj.minWidth = dimensions.wMin
   if (dimensions.hMin) styleObj.minHeight = dimensions.hMin
+  if (dimensions.wMax) styleObj.maxWidth = dimensions.wMax
+  if (dimensions.hMax) styleObj.maxHeight = dimensions.hMax
   return style(styleObj)
 }
