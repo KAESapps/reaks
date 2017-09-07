@@ -36,6 +36,7 @@ const convertNumericValues = (prop, value) => {
 
 const staticStyle = styleObj => node => {
   forEach(styleObj, (v, k) => (node.style[k] = convertNumericValues(k, v)))
+  return () => forEach(styleObj, (v, k) => (node.style[k] = null))
 }
 
 const dynamicStyle = getStyleObj => node => {
