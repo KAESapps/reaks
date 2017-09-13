@@ -1,5 +1,5 @@
-const forEach = require('lodash/forEach')
+const forEach = require("lodash/forEach")
 
-module.exports = styleObj => node => {
-  forEach(styleObj, (v, k) => node.setAttribute(k, v))
+module.exports = attrs => node => {
+  forEach(attrs, (v, k) => node.setAttribute(k, v))
 }

@@ -1,6 +1,10 @@
 const forEach = require("lodash/forEach")
 const isFunction = require("lodash/isFunction")
 const isNumber = require("lodash/isNumber")
+const last = require("lodash/last")
+const get = require("lodash/get")
+const mapValues = require("lodash/mapValues")
+const pull = require("lodash/pull")
 
 const { autorun } = require("reactivedb/obs")
 
@@ -35,8 +39,32 @@ const convertNumericValues = (prop, value) => {
 }
 
 const staticStyle = styleObj => node => {
-  forEach(styleObj, (v, k) => (node.style[k] = convertNumericValues(k, v)))
-  return () => forEach(styleObj, (v, k) => (node.style[k] = null))
+  // TODO: check perf
+
+  const styleIdentifiedValues = mapValues(styleObj, (v, k) => {
+    // convertit les valeurs en objet pour avoir une référence mémoire
+    const objValue = { value: convertNumericValues(k, v) }
+    // crée une pile de valeurs pour cette propriété si besoin
+    if (!node.stackStyle) node.stackStyle = {}
+    if (!node.stackStyle[k]) node.stackStyle[k] = []
+
+    // ajoute la valeur en haut de la pile
+    node.stackStyle[k].push(objValue)
+
+    // applique la valeur
+    node.style[k] = objValue.value
+
+    return objValue
+  })
+
+  forEach(styleIdentifiedValues, (v, k) => {})
+  return () =>
+    forEach(styleIdentifiedValues, (v, k) => {
+      // retire la valeur de la pile
+      pull(node.stackStyle[k], v)
+      // applique la valeur restante en haut de pile
+      node.style[k] = get(last(node.stackStyle[k]), "value") || null
+    })
 }
 
 const dynamicStyle = getStyleObj => node => {
