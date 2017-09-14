@@ -6,7 +6,7 @@ const get = require("lodash/get")
 const mapValues = require("lodash/mapValues")
 const pull = require("lodash/pull")
 
-const { autorun } = require("reactivedb/obs")
+const swap = require("./swap")
 
 const defaultNumericUnits = {
   borderRadius: "px",
@@ -67,12 +67,7 @@ const staticStyle = styleObj => node => {
     })
 }
 
-const dynamicStyle = getStyleObj => node => {
-  return autorun(function() {
-    const styleObj = getStyleObj()
-    staticStyle(styleObj)(node)
-  }, "reaks/style")
-}
+const dynamicStyle = getStyleObj => swap(() => staticStyle(getStyleObj()))
 
 module.exports = function(arg) {
   if (isFunction(arg)) {
