@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "Utils for DOM reactive updates.",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/KAESapps/reaks.git"
@@ -20,6 +17,14 @@
     "lodash": "4.17.4"
   },
   "peerDependencies": {
-    "reactivedb": "github:kaesapps/reactivedb#ac326c70364c88a20dc5d259673f22de54a9de68"
+    "reactivedb":
+      "github:kaesapps/reactivedb#ac326c70364c88a20dc5d259673f22de54a9de68"
+  },
+  "prettier": {
+    "trailingComma": "es5",
+    "semi": false
+  },
+  "devDependencies": {
+    "eslint": "4.10.0"
   }
 }
