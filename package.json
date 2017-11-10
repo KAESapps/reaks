@@ -17,8 +17,7 @@
     "lodash": "4.17.4"
   },
   "peerDependencies": {
-    "reactivedb":
-      "github:kaesapps/reactivedb#ac326c70364c88a20dc5d259673f22de54a9de68"
+    "kobs": "kaesapps/kobs#a95a4c9"
   },
   "prettier": {
     "trailingComma": "es5",

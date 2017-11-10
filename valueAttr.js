@@ -1,4 +1,4 @@
-const { autorun } = require('reactivedb/obs')
+const { autorun } = require("kobs")
 
 module.exports = getValue => domNode =>
   autorun(() => {

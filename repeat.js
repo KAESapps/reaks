@@ -1,4 +1,4 @@
-const { autorun } = require("reactivedb/obs")
+const { autorun } = require("kobs")
 
 module.exports = (getValue, createCmp) => parentNode => {
   const domNodes = new Map()

@@ -1,11 +1,15 @@
-const { autorun } = require('reactivedb/obs')
-const isString = require('lodash/isString')
+const { autorun } = require("kobs")
+const isString = require("lodash/isString")
 
 const staticText = v => domNode => {
   let str = v
   if (!isString(v)) {
     str = ""
-    console.warn("reaks/text value is not a string, using empty string", v, domNode)
+    console.warn(
+      "reaks/text value is not a string, using empty string",
+      v,
+      domNode
+    )
   }
   const textNode = document.createTextNode(str)
   domNode.appendChild(textNode)
@@ -18,7 +22,11 @@ const dynamicText = getValue => domNode => {
     let str = v
     if (!isString(str)) {
       str = ""
-      console.warn("reaks/text value is not a string, using empty string", v, domNode)
+      console.warn(
+        "reaks/text value is not a string, using empty string",
+        v,
+        domNode
+      )
     }
     if (textNode) {
       textNode.nodeValue = str
@@ -26,7 +34,7 @@ const dynamicText = getValue => domNode => {
       textNode = document.createTextNode(str)
       domNode.appendChild(textNode)
     }
-  }, 'reaks/text')
+  }, "reaks/text")
   return () => {
     unobserve()
     domNode.removeChild(textNode)
@@ -34,5 +42,5 @@ const dynamicText = getValue => domNode => {
 }
 
 module.exports = value => {
-  return typeof value === 'function' ? dynamicText(value) : staticText(value)
+  return typeof value === "function" ? dynamicText(value) : staticText(value)
 }
