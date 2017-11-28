@@ -7,7 +7,8 @@ module.exports = (getValue, createCmp) => parentNode => {
   const cancelObservation = autorun(() => {
     const ids = getValue() || []
     // TODO: est-il possible de faire ça meiux pour limiter les opérations sur le DOM ? reprendre l'implémentation de react/preact/inferno ?
-    prevIds.slice().forEach((id, i) => {
+    for (let i = prevIds.length - 1; i >= 0; i--) {
+      const id = prevIds[i]
       const newIndex = ids.indexOf(id)
       // remove ids no more in use
       if (newIndex < 0) {
@@ -19,7 +20,7 @@ module.exports = (getValue, createCmp) => parentNode => {
         domNodes.delete(id)
         prevIds.splice(i, 1)
       }
-    })
+    }
     // move current ids and add new ones
     ids.forEach((id, i) => {
       if (prevIds[i] === id) return // nothing to do
