@@ -4,11 +4,10 @@ const childSvg = require("./childSvg")
 const attr = require("./attrs")
 const size = require("./size")
 
-module.exports = ({ path, viewBox }, {
-  color = "black",
-  size: sizeArg,
-  transform,
-}) => {
+module.exports = ({ path, viewBox }, { color, size: sizeArg, transform }) => {
+  if (!color) {
+    color = "black"
+  }
   const transforms = [
     style({ fill: color }),
     attr({ viewBox }),
