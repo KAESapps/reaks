@@ -57,7 +57,6 @@ const staticStyle = styleObj => node => {
     return objValue
   })
 
-  forEach(styleIdentifiedValues, (v, k) => {})
   return () =>
     forEach(styleIdentifiedValues, (v, k) => {
       // retire la valeur de la pile
