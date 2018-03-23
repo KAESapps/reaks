@@ -8,7 +8,7 @@ module.exports = ({ path, viewBox }, { color, size: sizeArg, transform }) => {
   if (!color) {
     color = "black"
   }
-  const transforms = [
+  const svgTransforms = [
     style({ fill: color }),
     attr({ viewBox }),
     childSvg(seq([attr({ d: path })]), "path"),
@@ -16,8 +16,13 @@ module.exports = ({ path, viewBox }, { color, size: sizeArg, transform }) => {
   ]
 
   if (sizeArg) {
-    transforms.push(size(sizeArg))
+    svgTransforms.push(size(sizeArg))
   }
 
-  return childSvg(seq(transforms))
+  return seq([
+    // display: flex ensures that parent size fits svg node size
+    // (with display: block, there may be some weird margins coming up)
+    style({ display: "flex" }),
+    childSvg(seq(svgTransforms)),
+  ])
 }
