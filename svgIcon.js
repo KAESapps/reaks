@@ -1,3 +1,4 @@
+const isFunction = require("lodash/isFunction")
 const style = require("./style")
 const seq = require("./seq")
 const childSvg = require("./childSvg")
@@ -9,7 +10,7 @@ module.exports = ({ path, viewBox }, { color, size: sizeArg, transform }) => {
     color = "black"
   }
   const svgTransforms = [
-    style({ fill: color }),
+    style(isFunction(color) ? () => ({ fill: color() }) : { fill: color }),
     attr({ viewBox }),
     childSvg(seq([attr({ d: path })]), "path"),
     transform,
