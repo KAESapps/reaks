@@ -17,7 +17,7 @@
     "lodash": "4.17.4"
   },
   "peerDependencies": {
-    "kobs": "kaesapps/kobs#a95a4c9"
+    "kobs": "github:KAESapps/kobs"
   },
   "prettier": {
     "trailingComma": "es5",
