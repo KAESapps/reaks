@@ -14,16 +14,13 @@
   },
   "homepage": "https://github.com/KAESapps/reaks#readme",
   "dependencies": {
-    "lodash": "4.17.4"
-  },
-  "peerDependencies": {
-    "kobs": "github:KAESapps/kobs"
+    "lodash": "4.17.21"
   },
   "prettier": {
     "trailingComma": "es5",
     "semi": false
   },
   "devDependencies": {
-    "eslint": "4.10.0"
+    "eslint": "7.28.0"
   }
 }
